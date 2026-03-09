@@ -6,13 +6,10 @@ let chatbox = document.getElementById("chatbox");
 
 if(input.trim() === "") return;
 
-// Show user message
 chatbox.innerHTML += "<div class='user'>" + input + "</div>";
 
-// Clear input
 inputField.value = "";
 
-// Scroll down
 chatbox.scrollTop = chatbox.scrollHeight;
 
 try{
@@ -31,10 +28,8 @@ stream:false
 
 const data = await response.json();
 
-// Show AI response
 chatbox.innerHTML += "<div class='ai'>" + data.response + "</div>";
 
-// Auto scroll
 chatbox.scrollTop = chatbox.scrollHeight;
 
 }catch(error){
@@ -44,3 +39,12 @@ chatbox.innerHTML += "<div class='ai'>Error connecting to AI</div>";
 }
 
 }
+
+
+// ENTER KEY SUPPORT
+document.getElementById("userInput")
+.addEventListener("keypress", function(event) {
+if (event.key === "Enter") {
+sendMessage();
+}
+});
